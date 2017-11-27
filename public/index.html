@@ -1,0 +1,100 @@
+<!doctype html>
+<!-- Declares flightsApp as the starting Angular module -->
+<html class="no-js" ng-app="flightsApp">
+<head>
+    <meta charset="utf-8">
+    <title>Carrier Flights  MEAN Map</title>
+    <meta name="description" content="Carrier Flights Information System :MEAN Apps">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="../bower_components/bootstrap/dist/css/bootstrap.css"/>
+    <link rel="stylesheet" href="style.css"/>
+
+    <!-- Modernizr -->
+    <script src="../bower_components/modernizr/bin/modernizr"></script>
+
+    <!-- JS Source -->
+    <script src="../bower_components/jquery/dist/jquery.js"></script>
+    <script src="../bower_components/angular/angular.js"></script>
+    <script src="../bower_components/angular-route/angular-route.js"></script>
+
+    <!-- Angular Files -->
+    <script src="js/app.js"></script>
+    <script src="js/addCtrl.js"></script>
+    <script src="js/queryCtrl.js"></script>
+    <script src="js/headerCtrl.js"></script>
+
+</head>
+
+<body>
+<!--[if lt IE 10]>
+<p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
+<![endif]-->
+
+<div class="container">
+    <!-- Header Menu. Note use of headerCtrl -->
+    <div class="header">
+
+        <!-- Header items are made active upon selection -->
+        <ul class="nav nav-pills pull-right">
+            <li ng-class="{ active: isActive('/api')}"><a href="/#/api">API</a></li>
+            <li ng-class="{ active: isActive('/webview')}"><a href="/#/webview">Web view</a></li>
+        </ul>
+
+        <!-- Header Title -->
+        <h3 class="text-muted">Carrier Flights Information System : MEAN App</h3>
+
+
+
+    </div>
+
+    <!-- Main and Side Panel -->
+    <div class="row content">
+
+
+        <div class="col-md-4">
+
+            <!-- <div id="map"></div>  asr commented -->
+            <div class="header" ng-controller="headerCtrl as fetchdata">
+
+                <ul class="unstyled">
+                    <li ng-repeat="flight in fetchdata.data">
+                        <label class="checkbox">
+
+
+                            <a href="#" onClick="getFlights()" >
+                                <span>{{flight}}</span>
+                            </a>
+
+                        </label>
+                    </li>
+                </ul>
+
+                <input type="hidden" ng-model="formData.name" value="345">
+
+
+            </div>
+
+        </div>
+
+        <div>
+
+        </div>
+
+
+        <!-- Side Panel (Controlled by ng-view) -->
+        <div ng-view></div>
+
+    </div>
+    <hr/>
+
+    <!-- Footer -->
+    <div class="footer">
+        <hr/>
+    </div>
+
+</div>
+
+</body>
+</html>
